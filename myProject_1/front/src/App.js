@@ -1,11 +1,12 @@
 import './App.css';
 import Header from './component/header';
-import Main from './component/main';
-import Introduce from './component/introduce';
-import Post from './component/post';
+import Main from './routes/main';
+import Introduce from './routes/introduce';
+import Post from './routes/post';
 import Footer from './component/footer';
-import MorePost from './component/morePost';
-import WritePost from './component/writePost';
+import MorePost from './routes/morePost';
+import WritePost from './routes/writePost';
+import ViewPost from './routes/viewPost';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path='/post' element={<Post />}></Route>
           <Route path='/post/more' element={<MorePost />}></Route>
           <Route path='/post/write' element={<WritePost />}></Route>
+          <Route path='/post/view/:postId' element={<ViewPost />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>

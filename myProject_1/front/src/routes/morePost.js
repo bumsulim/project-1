@@ -1,16 +1,17 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function MorePost() {
   
   const backendUrl = 'http://localhost:4000'
-  const [postdata, setPostdata] = useState([]);
+  const [postData, setPostData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    axios.get(`${backendUrl}/api/postdata`)
+    axios.get(`${backendUrl}/api/postData`)
     .then((res) => {
-      setPostdata(res.data);
+      setPostData(res.data);
     }).catch((err) => {
       console.error(`에러 발생`, err);
     })
@@ -19,7 +20,7 @@ function MorePost() {
   const createPost = () => {
 
     const mainSlice = (idx) => {
-      const str = postdata[idx].post_main
+      const str = postData[idx].post_main
       let result
       if (str.length > 16) {
         result = str.slice(0, 50)
@@ -30,23 +31,23 @@ function MorePost() {
     }
 
     const footerSlice = (idx) => {
-      const str = postdata[idx].post_date
+      const str = postData[idx].post_date
       let result = str.slice(0, 10)
       return result += ' '
     }
 
     let arr = [];
 
-    for (let i = (currentPage - 1) * 10; i < Math.min(currentPage * 10, postdata.length); i++) {
+    for (let i = (currentPage - 1) * 10; i < Math.min(currentPage * 10, postData.length); i++) {
       arr.push(
         <li key={i}>
           <div className="list-text">
-            <h2>{postdata[i].post_header}</h2>
-            <h3>{mainSlice(i)}</h3>
+            <Link to={`/post/view/${postData[i].post_id}`}>{postData[i].post_header}</Link>
+            <p>{mainSlice(i)}</p>
           </div>
           <div className="list-info">
             <h3>{footerSlice(i)}</h3>
-            <h3>{postdata[i].post_writer}</h3>
+            <h3>{postData[i].post_writer}</h3>
           </div>
         </li>
       );
@@ -56,7 +57,7 @@ function MorePost() {
   }
 
   const createButton = () => {
-
+    //버튼 css 변환
     const activeButton = (i) => {
       if (currentPage === i) {
         return "active-button"
@@ -65,7 +66,7 @@ function MorePost() {
 
     const buttons = [];
      // 버튼 개수 계산
-    const buttonCount = Math.ceil(postdata.length / 10);
+    const buttonCount = Math.ceil(postData.length / 10);
     for (let i = 1; i <= buttonCount; i++) {
       buttons.push(
         <button id={activeButton(i)} key={i} onClick={() => setCurrentPage(i)}>

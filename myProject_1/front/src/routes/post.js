@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 function Post() {
 
   const backendUrl = 'http://localhost:4000'
-  const [postdata, setPostdata] = useState([]);
+  const [postData, setPostData] = useState([]);
 
   useEffect(() => {
-    axios.get(`${backendUrl}/api/postdata`)
+    axios.get(`${backendUrl}/api/postData`)
     .then((res) => {
-      setPostdata(res.data);
+      setPostData(res.data);
     }).catch((err) => {
       console.error(`에러 발생`, err);
     })
@@ -20,7 +20,7 @@ function Post() {
     let arr1 = [];
     // 함수를 이용해서 받아온 데이터 뒷부분을 짜르는 기능
     const mainSlice = (idx) => {
-      const str = postdata[idx].post_main
+      const str = postData[idx].post_main
       let result
       if (str.length > 16) {
         result = str.slice(0, 90)
@@ -31,21 +31,21 @@ function Post() {
     }
     // 함수를 이용해서 받아온 데이터 뒷부분을 짜르는 기능
     const footerSlice = (idx) => {
-      const str = postdata[idx].post_date
+      const str = postData[idx].post_date
       let result = str.slice(0, 10)
       return result += ' '
     }
 
-    for (let key in postdata) {
+    for (let key in postData) {
       arr1.push
       (
-        <li key={postdata[key].post_id} className="post">
+        <li key={postData[key].post_id} className="post">
           <div className="post-header">
             <div>IMG</div>
-            <h2>{postdata[key].post_header}</h2>
+            <Link to={`/post/view/${postData[key].post_id}`}>{postData[key].post_header}</Link>
           </div>
             <p className="post-main">{mainSlice(key)}</p>
-            <p className="post-footer">{footerSlice(key)}{postdata[key].post_writer}</p>
+            <p className="post-footer">{footerSlice(key)}{postData[key].post_writer}</p>
         </li>
       )
     }

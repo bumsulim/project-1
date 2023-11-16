@@ -161,8 +161,14 @@ a {
   height: 70px;
 }
 
-.post-header > h2 {
+.post-header > a {
   flex-grow: 1;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.post-header > a:hover {
+  color: #847c8c;
 }
 
 .linkBox {
@@ -215,6 +221,19 @@ a {
   justify-content: space-around;
   flex-grow: 1;
   border-right: 1px solid rgb(184, 184, 184);
+}
+
+.list-text a {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.list-text a:hover {
+  color: #847c8c;
+}
+
+.list-text p {
+  font-size: 18px;
 }
 
 .list-info {
@@ -288,6 +307,38 @@ a {
 
 .WritePost-submit {
   height: 50px;
+}
+
+#ViewPost {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.ViewPost-box {
+  display: flex;
+  flex-direction: column;
+  width: 900px;
+  border: 1px dotted black;
+  margin: 20px 0px;
+  padding: 10px;  
+  white-space: pre-line;
+}
+
+.ViewPost-box h1 {
+  margin: 20px 10px;
+  text-align: center;
+}
+
+.ViewPost-box > p {
+  flex-grow: 1;
+  padding: 20px 0px;
+}
+
+.ViewPost-box div {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
 }
 
 .Footer {

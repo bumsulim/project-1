@@ -1,8 +1,8 @@
 function Footer() {
   return (
     <div className="Footer">
-      <p>Portfolio deadline 2023.09.03 T23:59:59</p>
-      <p>I'm died 2023.09.04 T10:14:00</p>
+      <p>e-mail : dlaqjatn1214@naver.com</p>
+      <p>tel : 010-8378-4226</p>
     </div>
   );
 }
